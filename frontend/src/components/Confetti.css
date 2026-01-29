@@ -1,0 +1,232 @@
+/**
+ * Confetti Celebration Styles
+ * 
+ * Pure CSS confetti animation - no JavaScript needed for animation!
+ * Creates colorful falling confetti pieces with different colors, speeds, and delays.
+ */
+
+/* Container for confetti and message */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Confetti wrapper */
+.confetti {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Individual confetti pieces */
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff6b6b;
+  top: -10px;
+  opacity: 1;
+  animation: fall linear forwards;
+  border-radius: 50%;
+}
+
+/* Different colors for confetti pieces - 10 color variations */
+.confetti-piece-0 {
+  background: #ff6b6b;
+  transform: rotate(45deg);
+}
+
+.confetti-piece-1 {
+  background: #4ecdc4;
+  width: 8px;
+  height: 8px;
+  transform: rotate(90deg);
+}
+
+.confetti-piece-2 {
+  background: #ffe66d;
+  width: 12px;
+  height: 12px;
+  transform: rotate(135deg);
+}
+
+.confetti-piece-3 {
+  background: #a8e6cf;
+  width: 9px;
+  height: 9px;
+  transform: rotate(180deg);
+}
+
+.confetti-piece-4 {
+  background: #ff8b94;
+  width: 11px;
+  height: 11px;
+  transform: rotate(225deg);
+}
+
+.confetti-piece-5 {
+  background: #667eea;
+  width: 10px;
+  height: 10px;
+  transform: rotate(270deg);
+}
+
+.confetti-piece-6 {
+  background: #764ba2;
+  width: 9px;
+  height: 9px;
+  transform: rotate(315deg);
+}
+
+.confetti-piece-7 {
+  background: #feca57;
+  width: 11px;
+  height: 11px;
+  transform: rotate(30deg);
+}
+
+.confetti-piece-8 {
+  background: #48c6ef;
+  width: 8px;
+  height: 8px;
+  transform: rotate(60deg);
+}
+
+.confetti-piece-9 {
+  background: #fa709a;
+  width: 12px;
+  height: 12px;
+  transform: rotate(120deg);
+}
+
+/* Fall animation - confetti falls from top to bottom with rotation and horizontal drift */
+@keyframes fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--fall-x, 0px)) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Add horizontal movement variation for natural falling effect */
+.confetti-piece:nth-child(odd) {
+  --fall-x: 50px;
+}
+
+.confetti-piece:nth-child(even) {
+  --fall-x: -50px;
+}
+
+.confetti-piece:nth-child(3n) {
+  --fall-x: 100px;
+}
+
+.confetti-piece:nth-child(5n) {
+  --fall-x: -100px;
+}
+
+.confetti-piece:nth-child(7n) {
+  --fall-x: 75px;
+}
+
+.confetti-piece:nth-child(11n) {
+  --fall-x: -75px;
+}
+
+/* Celebration message overlay */
+.celebration-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: celebrationPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: auto;
+  z-index: 10001;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+@keyframes celebrationPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.celebration-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.celebration-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.celebration-text {
+  font-size: 1.5rem;
+  color: #666;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .celebration-message {
+    padding: 2rem 2.5rem;
+    margin: 0 1rem;
+    max-width: 90%;
+  }
+
+  .celebration-icon {
+    font-size: 4rem;
+  }
+
+  .celebration-title {
+    font-size: 2rem;
+  }
+
+  .celebration-text {
+    font-size: 1.2rem;
+  }
+}
+
